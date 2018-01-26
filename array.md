@@ -77,7 +77,7 @@ class Solution {
 //       Map<Integer, Integer> map = new HashMap<Integer, Integer>();
 //        for (int i = 0; i < numbers.length; map.put(numbers[i], ++i)) 
 //            if (map.containsKey(target - numbers[i])) 
-//                return new int[]{map.get(target - numbers[i]),i+1};
+//                return new int[]{map.get(target - numbers[i]),i};
 //        return new int[]{0,0};
 //    }
 //}
@@ -112,4 +112,36 @@ Why maxIndex != i?
 Cause the nums[] may be : [1]
 which means maxIndex is 0 and i = 0. In that case, the function would return -1 if we dont have a != condition.
 
-4.
+4. Min Cost Climbing Stairs
+class Solution {
+   // public int minCostClimbingStairs(int[] cost) {
+//        int f1 = 0, f2 = 0;
+ //       for(int i = 0; i < cost.length; i++) {
+//            int totalCost = cost[i] + Math.min(f1,f2);
+//            f1 = f2;
+//            f2 = totalCost;
+//        }
+//        return Math.min(f1,f2);
+//    }
+public int minCostClimbingStairs(int[] cost) {
+        int dp0 = 0;
+        int dp1 = 0;
+        int dp2 = 0;
+        for (int i = 2; i < cost.length + 1; i++) {
+            dp2 = Math.min(dp0 + cost[i - 2] , dp1 + cost[i - 1]);
+            dp0 = dp1;
+            dp1 = dp2;
+        }
+        return dp2;
+    }
+}
+
+two different solutions;
+Point f1 = f2; 
+f2 = totalCost;
+return Math.min(f1,f2) e.p. cost[]={0,0,1,0}. We would get a expectation 1 if we return to totalCost.
+
+solution2:
+return dp2. In this case we coultnt return to Math.min(dp0,dp1) cause dp2 = Math.min(totalCost(i-2)+Cost[i-2], totalCost(i-1)+Cost(i-1).
+
+5.

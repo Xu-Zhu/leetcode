@@ -14,6 +14,7 @@ coding languge:Java
 Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array.
 
 solution:   
+      
     class Solution {  
         public void merge(int[] nums1, int m, int[] nums2, int n) {  
             while(n > 0) {
@@ -34,7 +35,8 @@ You may assume that each input would have exactly one solution, and you may not 
 
 solution:
 time complexity n^2:
-class Solution {
+  
+    class Solution {
     public int[] twoSum(int[] nums, int target) {
         for (int i = 0; i < nums.length -1; i++){
             for (int j = i+1; j < nums.length; j++){          
@@ -45,7 +47,7 @@ class Solution {
     }
         throw new IllegalArgumentException("No two sum solution");
     }
-}
+    }
 
 Using double for loop to achieve the goal. 
 Why i< nums.length-1 ?
@@ -57,7 +59,8 @@ Cause there might be no solution.
 
 Solution 2:
 time complexity o(n)
-class Solution {
+  
+    class Solution {
     public int[] twoSum(int[] nums, int target) {
         int[] res = new int[2];
         HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
@@ -71,15 +74,15 @@ class Solution {
         }
         return res;
     }
-}
-//public int[] twoSum(int[] numbers, int target) {
-//       Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-//        for (int i = 0; i < numbers.length; map.put(numbers[i], ++i)) 
-//            if (map.containsKey(target - numbers[i])) 
-//                return new int[]{map.get(target - numbers[i]),i};
-//        return new int[]{0,0};
-//    }
-//}
+    }
+    //public int[] twoSum(int[] numbers, int target) {
+    //       Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+    //        for (int i = 0; i < numbers.length; map.put(numbers[i], ++i)) 
+    //            if (map.containsKey(target - numbers[i])) 
+    //                return new int[]{map.get(target - numbers[i]),i};
+    //        return new int[]{0,0};
+    //    }
+    //}
 
 3. Largest Number At Lease Twice of Others
 In a given integer array nums, there is always exactly one largest element.
@@ -89,7 +92,7 @@ Find whether the largest element in the array is at least twice as much as every
 If it is, return the index of the largest element, otherwise return -1.
 
 
-class Solution {
+    class Solution {
     public int dominantIndex(int[] nums) {
         int maxIndex = 0;
         for (int i = 0; i < nums.length; ++i) {
@@ -102,8 +105,8 @@ class Solution {
         }
         return maxIndex;
         
+      }
     }
-}
 
 The idea is we int maxIndex = 0. By using for loop, we could have a nums[maxIndex] after we traveled nums[]. It will be the max value.
 Then we may have another for loop to figure out wether the nums[maxIndex] is twice as nums[i].
@@ -111,9 +114,10 @@ Why maxIndex != i?
 Cause the nums[] may be : [1]
 which means maxIndex is 0 and i = 0. In that case, the function would return -1 if we dont have a != condition.
 
-4. Min Cost Climbing Stairs
-class Solution {  
-       public int minCostClimbingStairs(int[] cost) {
+4 Min Cost Climbing Stairs
+      
+    class Solution {  
+    public int minCostClimbingStairs(int[] cost) {
             int f1 = 0, f2 = 0;
             for(int i = 0; i < cost.length; i++) {
             int totalCost = cost[i] + Math.min(f1,f2);
@@ -122,7 +126,7 @@ class Solution {
         }
          return Math.min(f1,f2);     
        }
-public int minCostClimbingStairs(int[] cost) {
+    public int minCostClimbingStairs(int[] cost) {
         int dp0 = 0;
         int dp1 = 0;
         int dp2 = 0;
@@ -132,8 +136,8 @@ public int minCostClimbingStairs(int[] cost) {
             dp1 = dp2;
             }
             return dp2;
-          }
-       }
+        }
+    }
 
 two different solutions;
 Point f1 = f2; 

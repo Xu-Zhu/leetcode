@@ -143,4 +143,24 @@ return Math.min(f1,f2) e.p. cost[]={0,0,1,0}. We would get a expectation 1 if we
 solution2:
 return dp2. In this case we coultnt return to Math.min(dp0,dp1) cause dp2 = Math.min(totalCost(i-2)+Cost[i-2], totalCost(i-1)+Cost(i-1).
 
-5.
+5.Find Pivot Index
+Given an array of integers nums, write a method that returns the "pivot" index of this array.
+We define the pivot index as the index where the sum of the numbers to the left of the index is equal to the sum of the numbers to the right of the index.
+If no such index exists, we should return -1. If there are multiple pivot indexes, you should return the left-most pivot index.
+  
+    class Solution {
+    public int pivotIndex(int[] nums) {
+        int totalLeft = 0, total = 0;
+        for(int i = 0; i < nums.length; i++) {
+            total = total +nums[i];
+        }
+        for(int i = 0; i < nums.length; i++) {
+            if(i !=0) {
+            totalLeft = totalLeft + nums[i-1];}
+            if(totalLeft == total- totalLeft - nums[i]) {
+                return i;
+            }
+        }   
+        return -1;
+      }
+    }

@@ -168,3 +168,21 @@ If no such index exists, we should return -1. If there are multiple pivot indexe
         return -1;
       }
     }
+     
+6.1-bit and 2-bit Characters
+    
+    class Solution {
+    public boolean isOneBitCharacter(int[] bits) {
+        int n = bits.length;
+        int i = 0;
+        for (; i < n -1;) {
+            if (bits[i] == 1) {
+                i += 2;
+            }
+            else {
+                i += 1;
+            }
+        }
+        return i == n - 1;
+        }
+    }

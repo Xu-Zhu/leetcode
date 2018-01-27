@@ -185,4 +185,7 @@ If no such index exists, we should return -1. If there are multiple pivot indexe
         }
         return i == n - 1;
         }
-    }
+    }
+
+Cause there are only two different types character either 10/11 or 0. we will plus 2 to i, if it comes 1,no matter wut comes after 1, it would be 10 or 11, plus 0 to i, if it only comes 0. Therefore, once we have traveled n-2 length, we would like to know the total sum of i wether equal to n-1 or not. Then return to n-1.  
+  

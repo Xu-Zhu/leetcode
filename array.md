@@ -291,8 +291,7 @@ Another solution:
             } 
         }
         return res;
-    }
-    ```
+    }```
 
 
       
@@ -304,9 +303,8 @@ Another solution:
 ## 10. Max Area of Island
 ## 2-D nums[]  
     
-nums[] [] grind.
+```nums[] [] grind.
   
-```
 int grid[][] = new int[10][10];
 
 for(int i = 0; i < grid.length(); ++i) {
@@ -321,8 +319,7 @@ for(int i = 0; i < grid.length(); ++i) {
 ## using DFS   
 
   
-```
-public int maxAreaOfIsland(int[][] grid) {
+```public int maxAreaOfIsland(int[][] grid) {
         int max_area = 0;
         for(int i = 0; i < grid.length; i++)
             for(int j = 0; j < grid[0].length; j++)
@@ -336,8 +333,8 @@ public int maxAreaOfIsland(int[][] grid) {
             return 1 + AreaOfIsland(grid, i+1, j) + AreaOfIsland(grid, i-1, j) + AreaOfIsland(grid, i, j-1) + AreaOfIsland(grid, i, j+1);
         }
         return 0;
-    }
-    ```
+    }```
+    
     
 solution 2:
         
@@ -385,8 +382,8 @@ Two different version: || or &&.
 ## 11 Longest Continuous Increasing Subsequence.
 
 soloution:
-```
-class Solution {
+
+```class Solution {
     public int findLengthOfLCIS(int[] nums) {
         if (nums == null || nums.length == 0) return 0;
         int maxLength = 1;
@@ -402,8 +399,7 @@ class Solution {
         }
      return Math.max(res,maxLength);   
     }
-}
-```
+}```
 if the nums isnt null. The maxLength will be at least 1. By using for loop we would have two defferent result. Either maxLength += 1 or reset maxLength after we have condition(nums[i-1] >= nums.length). Finally, return Math.max(res,maxLength).  
 Point:  
 we dont have to set i =0 , cause if three nums.length =1 e.p. : {1}. just return Math.max{res,maxLength}. 

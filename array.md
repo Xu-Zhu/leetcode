@@ -367,7 +367,8 @@ public int maxAreaOfIsland(int[][] grid) {
         area = dfs(grid, i - 1, j, m, n, area);
         area = dfs(grid, i, j - 1, m, n, area);
         return area;
-    }```
+    }
+```
     
     
 Using two --for loops to travel entire int[] [] grid. if grid[i][j] == 1 start dfs then using Math.max(area,max_area) to find the maximum. cause max-area = Math.max(area,max_area). It will update max_area again and agian by for loop with variavble  i and j.  
@@ -382,7 +383,8 @@ The point of we change gird[i][j] to 0 is we wouldnt traveled it gain which we w
 ## 11 Longest Continuous Increasing Subsequence.
 
 soloution:
-```class Solution {
+```
+class Solution {
     public int findLengthOfLCIS(int[] nums) {
         if (nums == null || nums.length == 0) return 0;
         int maxLength = 1;
@@ -398,7 +400,8 @@ soloution:
         }
      return Math.max(res,maxLength);   
     }
-}```
+}
+```
 
 If the nums isnt null. The maxLength will be at least 1. By using for loop we would have two defferent result. Either maxLength += 1 or reset maxLength after we have condition(nums[i-1] >= nums.length). Finally, return Math.max(res,maxLength).  
 Point:  
@@ -408,7 +411,8 @@ To be honestly, we can also int res =1, cause we have exclude the situation whic
 
 ## 10.Search Insert Position:
 
-```class Solution {
+```
+class Solution {
     public int searchInsert(int[] nums, int target) {
         int position = 0;
         if(target < nums[0]) return 0;
@@ -423,6 +427,7 @@ To be honestly, we can also int res =1, cause we have exclude the situation whic
         }
       return position;  
     }
-}```
+}
+```
 
   

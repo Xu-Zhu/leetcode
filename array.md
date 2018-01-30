@@ -370,7 +370,8 @@ solution 2:
     }```
 
   
-using two --for loops to travel entire int[] [] grid. if grid[i][j] == 1 start dfs then using Math.max(area,max_area) to find the maximum. cause max-area = Math.max(area,max_area). It will update max_area again and agian by for loop with variavble  i and j.  
+  
+  using two --for loops to travel entire int[] [] grid. if grid[i][j] == 1 start dfs then using Math.max(area,max_area) to find the maximum. cause max-area = Math.max(area,max_area). It will update max_area again and agian by for loop with variavble  i and j.  
 
 dfs:
 Two different version: || or &&. 
@@ -400,10 +401,29 @@ soloution:
      return Math.max(res,maxLength);   
     }
 }```
-if the nums isnt null. The maxLength will be at least 1. By using for loop we would have two defferent result. Either maxLength += 1 or reset maxLength after we have condition(nums[i-1] >= nums.length). Finally, return Math.max(res,maxLength).  
+  
+  if the nums isnt null. The maxLength will be at least 1. By using for loop we would have two defferent result. Either maxLength += 1 or reset maxLength after we have condition(nums[i-1] >= nums.length). Finally, return Math.max(res,maxLength).  
 Point:  
 we dont have to set i =0 , cause if three nums.length =1 e.p. : {1}. just return Math.max{res,maxLength}. 
 To be honestly, we can also int res =1, cause we have exclude the situation which (nums.length == null) or (nums= null).
+## 10.Search Insert Position
+```class Solution {
+    public int searchInsert(int[] nums, int target) {
+        int position = 0;
+        if(target < nums[0]) return 0;
+        if(target > nums[nums.length-1]) return nums.length;
+        for(int i = 0; i < nums.length;i++) {
+            if(nums[i] < target) {
+                position += 1;
+            }
+            else {
+                break;
+            }
+        }
+      return position;  
+    }
+}```
+
 
  
  

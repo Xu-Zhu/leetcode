@@ -312,8 +312,8 @@ for(int i = 0; i < grid.length(); ++i) {
         // Do whatever with grid[i][j] here
     }
 }
-```
-  
+``` . 
+  
 
     
 ## using DFS   
@@ -333,8 +333,8 @@ for(int i = 0; i < grid.length(); ++i) {
             return 1 + AreaOfIsland(grid, i+1, j) + AreaOfIsland(grid, i-1, j) + AreaOfIsland(grid, i, j-1) + AreaOfIsland(grid, i, j+1);
         }
         return 0;
-    }```
-    
+    }``` . 
+    
     
 solution 2:
         
@@ -367,7 +367,7 @@ solution 2:
         area = dfs(grid, i - 1, j, m, n, area);
         area = dfs(grid, i, j - 1, m, n, area);
         return area;
-    }```
+    }``` . 
 
   
   
@@ -400,14 +400,18 @@ soloution:
         }
      return Math.max(res,maxLength);   
     }
-}```
+}``` . 
+  
   
   if the nums isnt null. The maxLength will be at least 1. By using for loop we would have two defferent result. Either maxLength += 1 or reset maxLength after we have condition(nums[i-1] >= nums.length). Finally, return Math.max(res,maxLength).  
 Point:  
 we dont have to set i =0 , cause if three nums.length =1 e.p. : {1}. just return Math.max{res,maxLength}. 
 To be honestly, we can also int res =1, cause we have exclude the situation which (nums.length == null) or (nums= null).
-## 10.Search Insert Position
-```class Solution {
+  
+  ## 10.Search Insert Position
+  
+    
+    ```class Solution {
     public int searchInsert(int[] nums, int target) {
         int position = 0;
         if(target < nums[0]) return 0;

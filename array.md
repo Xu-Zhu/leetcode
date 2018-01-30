@@ -213,9 +213,9 @@ class Solution {
   i = 0 ; j = 1;  
   nums[0] != nums[1]   
   if nums[i] = nums[j] comes first. which would be nums[0] =nums[1] . It changes the value of  nums[0]. Uncorrect.  
-  The for loop may keep performing i++ j++ and if(nums[i] != nums[i+1]) section.  
-    
-##8.  Remove Element
+  The for loop may keep performing i++ j++ and if(nums[i] != nums[i+1]) section.    
+  
+##8. Remove Element
 ```
 class Solution {
     public int removeElement(int[] nums, int val) {
@@ -231,9 +231,11 @@ class Solution {
 }
 ```  
   
-  I have set two pointers i and j， once num[j] !=val, makes nums[i] =nums[j]. At the same time i++ could be nums.length cause when nums[0] equal to a exactly integer , i++ will equal to 1 which is nums.length at that time.  
-    
-##9.  Degree of a n Array 
+  I have set two pointers i and j， once num[j] !=val, makes nums[i] =nums[j]. At the same time i++ could be nums.length cause when nums[0] equal to a exactly integer , i++ will equal to 1 which is nums.length at that time.    
+   
+
+  
+## 9.Degree of a n Array 
 ## Need review
 ```
 class Solution {
@@ -265,7 +267,7 @@ Since we can have the minum length from (right most) nums[x] - (left most) nums[
 set three hashmaps left; right; count.
 using for loop to update ans value and use Math.min to get a minimum value by ans(x) with variable x.  
   
-  Another solution:
+Another solution:
   ```
   public int findShortestSubArray(int[] nums) {
         if (nums.length == 0 || nums == null) return 0;
@@ -290,14 +292,20 @@ using for loop to update ans value and use Math.min to get a minimum value by an
         }
         return res;
     }
-    ```. 
+    ```
+
+
       
- We dont have to set 3 different nums[]. its not a effient way.     
+ We dont have to set 3 different nums[]. its not a effient way.   
+ 
+  
 ## Need review upper solution as many times as possible.
 
 ## 10. Max Area of Island
-## 2-D nums[]
+## 2-D nums[]  
+    
 nums[] [] grind.
+  
 ```
 int grid[][] = new int[10][10];
 
@@ -308,7 +316,11 @@ for(int i = 0; i < grid.length(); ++i) {
 }
 ```
   
-##using DFS 
+
+    
+## using DFS   
+
+  
 ```
 public int maxAreaOfIsland(int[][] grid) {
         int max_area = 0;
@@ -327,9 +339,9 @@ public int maxAreaOfIsland(int[][] grid) {
     }
     ```
     
-    solution 2:
-    ```
-        public int maxAreaOfIsland(int[][] grid) {
+solution 2:
+        
+        ```public int maxAreaOfIsland(int[][] grid) {
         if (grid == null || grid.length == 0) {
             return 0;
         }
@@ -358,8 +370,9 @@ public int maxAreaOfIsland(int[][] grid) {
         area = dfs(grid, i - 1, j, m, n, area);
         area = dfs(grid, i, j - 1, m, n, area);
         return area;
-    }
-    ```
+    }```
+
+  
 using two --for loops to travel entire int[] [] grid. if grid[i][j] == 1 start dfs then using Math.max(area,max_area) to find the maximum. cause max-area = Math.max(area,max_area). It will update max_area again and agian by for loop with variavble  i and j.  
 
 dfs:
@@ -367,9 +380,11 @@ Two different version: || or &&.
   
   && version : once grid[i] [j] = 1 has been explored and traveled, we changed the value to 0 and then we will explore adjacent grid[][].  
   The point of we change gird[i][j] to 0 is we wouldnt traveled it gain which we would only calculate it 1 time.   
-##11 Longest Continuous Increasing Subsequence.
+  
+    
+## 11 Longest Continuous Increasing Subsequence.
 
-soloution;
+soloution:
 ```
 class Solution {
     public int findLengthOfLCIS(int[] nums) {
@@ -394,6 +409,7 @@ Point:
 we dont have to set i =0 , cause if three nums.length =1 e.p. : {1}. just return Math.max{res,maxLength}. 
 To be honestly, we can also int res =1, cause we have exclude the situation which (nums.length == null) or (nums= null).
 
+ 
  
 
   

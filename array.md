@@ -203,7 +203,197 @@ class Solution {
     return i+1;
     }
 }
+```  
+  
+  The idea is have a i and j at the same time j is a faster pointer, i is the slower one. Which j = i + 1. By using for loop we can travel all the nums[] from nums[i] to nums[nums.length -1].  
+  why i++ comes first ? also why return i+1.  
+  Because we have alreday have a exactly value of nums[0] which is i=0. now we want to get a value for nums[1] which is i=1. If nums[i] != nums[j] we may put the value of nums[j] to nums[i]. 
+    
+    For example:  
+  i = 0 ; j = 1;  
+  nums[0] != nums[1]   
+  if nums[i] = nums[j] comes first. which would be nums[0] =nums[1] . It changes the value of  nums[0]. Uncorrect.  
+  The for loop may keep performing i++ j++ and if(nums[i] != nums[i+1]) section.  
+    
+##8.  Remove Element
 ```
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int i = 0;
+        for(int j =0; j < nums.length; ++j) {
+            if(nums[j] != val) {
+                nums[i] = nums[j];
+                i++;
+            }
+        }
+        return i;
+    }
+}
+```  
+  
+  I have set two pointers i and j， once num[j] !=val, makes nums[i] =nums[j]. At the same time i++ could be nums.length cause when nums[0] equal to a exactly integer , i++ will equal to 1 which is nums.length at that time.  
+    
+##9.  Degree of a n Array 
+## Need review
+```
+class Solution {
+    public int findShortestSubArray(int[] nums) {
+        Map<Integer, Integer> left = new HashMap(),
+            right = new HashMap(), count = new HashMap();
 
+        for (int i = 0; i < nums.length; i++) {
+            int x = nums[i];
+            if (left.get(x) == null) {
+                left.put(x, i);
+            }
+            right.put(x, i);
+            count.put(x, count.getOrDefault(x, 0) + 1);
+        }
+
+        int ans = nums.length;
+        int degree = Collections.max(count.values());
+        for (int x: count.keySet()) {
+            if (count.get(x) == degree) {
+                ans = Math.min(ans, right.get(x) - left.get(x) + 1);
+            }
+        }
+        return ans;
+    }
+} 
+```
+Since we can have the minum length from (right most) nums[x] - (left most) nums[x] + 1
+set three hashmaps left; right; count.
+using for loop to update ans value and use Math.min to get a minimum value by ans(x) with variable x.  
+  
+  Another solution:
+  ```
+  public int findShortestSubArray(int[] nums) {
+        if (nums.length == 0 || nums == null) return 0;
+        Map<Integer, int[]> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++){
+           if (!map.containsKey(nums[i])){
+               map.put(nums[i], new int[]{1, i, i});  // the first element in array is degree, second is first index of this key, third is last index of this key
+           } else {
+               int[] temp = map.get(nums[i]);
+               temp[0]++;
+               temp[2] = i;
+           }
+        }
+        int degree = Integer.MIN_VALUE, res = Integer.MAX_VALUE;
+        for (int[] value : map.values()){
+            if (value[0] > degree){
+                degree = value[0];
+                res = value[2] - value[1] + 1;
+            } else if (value[0] == degree){
+                res = Math.min( value[2] - value[1] + 1, res);
+            } 
+        }
+        return res;
+    }
+    ```. 
+      
+ We dont have to set 3 different nums[]. its not a effient way.     
+## Need review upper solution as many times as possible.
+
+## 10. Max Area of Island
+## 2-D nums[]
+nums[] [] grind.
+```
+int grid[][] = new int[10][10];
+
+for(int i = 0; i < grid.length(); ++i) {
+    for(int j = 0; j < grid[i].length(); ++j) {
+        // Do whatever with grid[i][j] here
+    }
+}
+```
+  
+##using DFS 
+```
+public int maxAreaOfIsland(int[][] grid) {
+        int max_area = 0;
+        for(int i = 0; i < grid.length; i++)
+            for(int j = 0; j < grid[0].length; j++)
+                if(grid[i][j] == 1)max_area = Math.max(max_area, AreaOfIsland(grid, i, j));
+        return max_area;
+    }
+    
+    public int AreaOfIsland(int[][] grid, int i, int j){
+        if( i >= 0 && i < grid.length && j >= 0 && j < grid[0].length && grid[i][j] == 1){
+            grid[i][j] = 0;
+            return 1 + AreaOfIsland(grid, i+1, j) + AreaOfIsland(grid, i-1, j) + AreaOfIsland(grid, i, j-1) + AreaOfIsland(grid, i, j+1);
+        }
+        return 0;
+    }
+    ```
+    
+    solution 2:
+    ```
+        public int maxAreaOfIsland(int[][] grid) {
+        if (grid == null || grid.length == 0) {
+            return 0;
+        }
+        int m = grid.length;
+        int n = grid[0].length;
+        int max = 0;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 1) {
+                    int area = dfs(grid, i, j, m, n, 0);
+                    max = Math.max(area, max);
+                }
+            }
+        }
+        return max;
+    }
+
+    int dfs(int[][] grid, int i, int j, int m, int n, int area) {
+        if (i < 0 || i >= m || j < 0 || j >= n || grid[i][j] == 0) {
+            return area;
+        }
+        grid[i][j] = 0;
+        area++;
+        area = dfs(grid, i + 1, j, m, n, area);
+        area = dfs(grid, i, j + 1, m, n, area);
+        area = dfs(grid, i - 1, j, m, n, area);
+        area = dfs(grid, i, j - 1, m, n, area);
+        return area;
+    }
+    ```
+using two --for loops to travel entire int[] [] grid. if grid[i][j] == 1 start dfs then using Math.max(area,max_area) to find the maximum. cause max-area = Math.max(area,max_area). It will update max_area again and agian by for loop with variavble  i and j.  
+
+dfs:
+Two different version: || or &&. 
+  
+  && version : once grid[i] [j] = 1 has been explored and traveled, we changed the value to 0 and then we will explore adjacent grid[][].  
+  The point of we change gird[i][j] to 0 is we wouldnt traveled it gain which we would only calculate it 1 time.   
+##11 Longest Continuous Increasing Subsequence.
+
+soloution;
+```
+class Solution {
+    public int findLengthOfLCIS(int[] nums) {
+        if (nums == null || nums.length == 0) return 0;
+        int maxLength = 1;
+        int res = 1;
+        for(int i = 1;i < nums.length; i++) {
+            if(nums[i-1] < nums[i]) {
+                maxLength += 1;
+                res = Math.max(res,maxLength);
+            }
+            else {
+                maxLength = 1;
+            }
+        }
+     return Math.max(res,maxLength);   
+    }
+}
+```
+if the nums isnt null. The maxLength will be at least 1. By using for loop we would have two defferent result. Either maxLength += 1 or reset maxLength after we have condition(nums[i-1] >= nums.length). Finally, return Math.max(res,maxLength).  
+Point:  
+we dont have to set i =0 , cause if three nums.length =1 e.p. : {1}. just return Math.max{res,maxLength}. 
+To be honestly, we can also int res =1, cause we have exclude the situation which (nums.length == null) or (nums= null).
+
+ 
 
   

@@ -268,7 +268,8 @@ set three hashmaps left; right; count.
 using for loop to update ans value and use Math.min to get a minimum value by ans(x) with variable x.  
   
 Another solution:
-  ```public int findShortestSubArray(int[] nums) {
+```Class Solution {
+  public int findShortestSubArray(int[] nums) {
         if (nums.length == 0 || nums == null) return 0;
         Map<Integer, int[]> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++){
@@ -291,7 +292,7 @@ Another solution:
         }
         return res;
     }```
-
+## tips:
 We dont have to set 3 different nums[]. its not a effient way.   
  
   

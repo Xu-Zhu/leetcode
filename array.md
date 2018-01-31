@@ -451,7 +451,7 @@ class Solution {
     }
 }```
 
-By using for loop to travel nums[] with pointer i. We need to consider different situations when nums[i-1] > nums[i] happens.  
+By using for loop to travel nums[] with pointer i. We need to consider different situations when nums[i-1] > nums[i] happens. 
 If n-1 == 0 which is the head of nums[]. we could just simply give it value of nums[i].   
 Or if nums[i-2] < nums[i] we did the same.  
 Else nums[i] = nums[i-1]. 

@@ -459,4 +459,21 @@ Or if nums[i-2] < nums[i] we did the same.
 Else nums[i] = nums[i-1]. 
 I add a break condition cause I would like to make my function efficiently.
 
+## 12 Can Place Flowers
+```
+class Solution {
+    public boolean canPlaceFlowers(int[] flowerbed, int n) {
+        for(int i = 0;i < flowerbed.length;++i) {
+            if(flowerbed[i] == 0 && (i == 0 || flowerbed[i-1] == 0) && (i == flowerbed.length-1 || flowerbed[i+1] == 0 )) {
+                flowerbed[i] = 1;
+                n--;
+            }
+        }
+      return n <= 0; 
+    }
+}
+```
+point i == 0 || flowerbed[i-1] ==0.  
+i == flowerbed.length -1 || flowerbed[i+1] == 0
+
   

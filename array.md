@@ -429,5 +429,32 @@ class Solution {
     }
 }
 ```
+## 11. Non-decreasing Array
+```class Solution {
+    public boolean checkPossibility(int[] nums) {
+        int count = 0;
+        for(int i = 1; i < nums.length; ++i) {
+            if( nums[i-1] > nums[i]) {
+                count += 1;
+                if(i-2 < 0 || nums[i-2] < nums[i]) {
+                    nums[i-1] = nums[i];
+                } else {
+                    nums[i] = nums[i-1];
+                }
+            }
+    
+            if(count >= 2) {
+                break;
+            }
+        }
+    return count <= 1;  
+    }
+}```
+
+By using for loop to travel nums[] with pointer i. We need to consider different situations when nums[i-1] > nums[i] happens.  
+If n-1 == 0 which is the head of nums[]. we could just simply give it value of nums[i].   
+Or if nums[i-2] < nums[i] we did the same.  
+Else nums[i] = nums[i-1]. 
+I add a break condition cause I would like to make my function efficiently.
 
   

@@ -430,7 +430,8 @@ class Solution {
 }
 ```
 ## 11. Non-decreasing Array
-```class Solution {
+```
+class Solution {
     public boolean checkPossibility(int[] nums) {
         int count = 0;
         for(int i = 1; i < nums.length; ++i) {

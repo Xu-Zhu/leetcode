@@ -475,5 +475,106 @@ class Solution {
 ```
 point i == 0 || flowerbed[i-1] ==0.  
 i == flowerbed.length -1 || flowerbed[i+1] == 0
+## 13 643. Maximum Average Subarray I
+```
+class Solution {
+    public double findMaxAverage(int[] nums, int k) {
+        double res = 0;
+        int sum = 0;
+        int j = 0;
+        for(int i = 0; i < k;++i) {
+            sum += nums[i];
+            res = sum;
+        }
+        for(int i = k; i < nums.length; ++i) {
+            res = Math.max(res,(sum += nums[i] - nums[i-k]));
+        }
+        return res/k;
+    }
+}
+```
+The type of res should be double.    
+The first for loop calculates the sum from nums[0] to nums[k-1]. Then we have res = sum.  
+Second for loop: add nums[i] remove nums[i-k]. Math.max(res, sum+= nums[i] - nums[i-k].  
+Why using sum+= not simply sum+nums[i]-nums[i-k]. Cause we need to update the sum all the time.
+
+## 14 661. Image Smoother
+```
+class Solution {
+    public int[][] imageSmoother(int[][] M) {
+        int res[][] = new int[M.length][M[0].length];
+        for(int i = 0; i < M.length; ++i) {
+            for(int j = 0; j < M[0].length; ++j) {
+               // res[i][j] = smooth{M, i, j};
+                res[i][j] = smooth(M, i, j);
+            }
+        }
+        return res;
+    }
+    
+    public int smooth(int[][] M, int x, int y) {
+        int count = 0;
+        int sum = 0;
+        for(int i = -1; i <=1; ++i) {
+            for(int j = -1; j <= 1 ;++j) {
+                if(x + i < 0 || x + i == M.length || y + j < 0 || y + j == M[0].length) {
+                    continue;
+                }
+                count ++;
+                sum += M[x+i][y+j];
+            }
+        }
+        return sum/count;
+    }
+}
+```
+need review.
+
+## 15 628. Maximum Product of Three Numbers
+first solution: Compare between: Math.max(maxNum*secMax*thirdMax,maxNum*minNum*secMin
+Space complexity: O(1) Time complxity : O(n)
+```
+class Solution {
+    public int maximumProduct(int[] nums) {
+        int maxNum = Integer.MIN_VALUE;
+        int secMax = Integer.MIN_VALUE;
+        int thirdMax = Integer.MIN_VALUE;
+        int minNum = Integer.MAX_VALUE;
+        int secMin = Integer.MAX_VALUE;
+        for(int i = 0; i < nums.length; ++i) {
+            if(nums[i] > maxNum) {
+                thirdMax = secMax;
+                secMax = maxNum;
+                maxNum = nums[i];
+            } else if (nums[i] > secMax) {
+                thirdMax = secMax;
+                secMax = nums[i];
+            } else if (nums[i] > thirdMax) {
+                thirdMax = nums[i];
+            }
+            if(nums[i] < minNum) {
+                secMin = minNum;
+                minNum = nums[i];
+            } else if(nums[i] < secMin) {
+                secMin = nums[i];
+            }
+        }
+        return Math.max(maxNum*secMax*thirdMax,maxNum*minNum*secMin);
+    }
+}
+```
+Solution 2:  
+Sort: Time  complexity NlogN and space complexity logn.
+```
+class Solution {
+    public int maximumProduct(int[] nums) {
+        Arrays.sort(nums);
+        int n = nums.length;
+        return Math.max(nums[0]*nums[1]*nums[n-1],nums[n-1]*nums[n-2]*nums[n-3]);
+    }
+}
+```
+
+
 
   

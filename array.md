@@ -574,6 +574,46 @@ class Solution {
     }
 }
 ```
+## 16 581. Shortest Unsorted Continuous Subarray
+Solution:
+```
+class Solution {
+    public int findUnsortedSubarray(int[] nums) {
+        int[] snums = nums.clone();
+        Arrays.sort(snums);
+        int start = nums.length;
+        int end = 0;
+        for (int i = 0; i < snums.length; i++) {
+            if (snums[i] != nums[i]) {
+               start = Math.min(start,i);
+               end = Math.max(end,i);
+            }
+        }
+        return (end-start <= 0 ? 0 : end - start + 1);
+    }
+}
+```
+The idea is by calculating end - start + 1 to have the answer.  
+The only thing we need to know is the the minimum i and maxinum i.   
+Cause we dont need to know the exaclty value of nums[i].  
+By using Math.max to have the maxinum and Math.min to have the mininum value.
+
+## 17 766. Toeplitz Matrix
+```
+class Solution {
+    public boolean isToeplitzMatrix(int[][] matrix) {
+        for(int x = 0; x < matrix.length - 1 ; x++) {
+            for(int y = 0; y < matrix[0].length - 1 ; y++) {
+                if(matrix[x][y] != matrix[x+1][y+1]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
+```
+
 
 
 

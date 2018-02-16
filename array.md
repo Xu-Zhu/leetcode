@@ -613,6 +613,238 @@ class Solution {
     }
 }
 ```
+## 18  121 Best time to buy and stock
+```
+class Solution {
+    public int maxProfit(int[] prices) {
+        int maxNow = 0;
+        int maxProfit = 0;
+        for(int i = 1; i < prices.length; i++) {
+            maxNow = Math.max(0,maxNow +=prices[i]-prices[i-1]);
+            maxProfit = Math.max(maxProfit,maxNow);
+        }
+       return maxProfit; 
+    }
+}
+```
+By updating maxNow value to compare with maxprofit.  
+By Math.max function to have the maxinum value.
+
+## 19  122 Best time to buy and stock
+```
+class Solution {
+    public int maxProfit(int[] prices) {
+        int maxProfit = 0;
+        for(int i = 1; i < prices.length; i++)
+            if(prices[i] > prices[i-1]) {
+                maxProfit +=prices[i] - prices[i-1];
+            }
+        return maxProfit;
+    }
+}
+```
+lets take a example:{ 1 , 4 ,5 , 3 ,6}. 
+so 5-1 = 4-1 + 5-4. and we also want to add 6-3 to maxProfit.  
+There we go, if prices[i] > prices[i-1] we add the value to maxProfit.
+
+## 20  167 two sum 2
+```
+class Solution {
+    public int[] twoSum(int[] numbers, int target) {
+        int i = 0; 
+        int j = numbers.length -1;
+        while(numbers[i] + numbers[j] != target) {
+            if(numbers[i] + numbers[j] > target) {
+                j--;
+            } else {
+                i++;
+            }
+        }
+      return new int[] {i + 1, j + 1}; 
+    }
+}
+```
+Cause its sort and i,j wouldnt cross each other.
+
+## 21 169. Majority Element
+```
+class Solution {
+    public int majorityElement(int[] nums) {
+        Arrays.sort(nums);
+        int res = 0;
+        int counts = 0;
+        if(nums.length == 1) {
+            res = nums[0];
+            return res;
+        }
+        for(int i = 0; i < nums.length - 1; i++) {
+            if(nums[i] == nums[i+1] && counts < nums.length/2) {
+                ++counts;
+                res = nums[i];
+            } else if(nums[i] != nums[i+1] && counts < nums.length/2) {
+                counts = 0;
+            } else {
+                break;
+            }
+        }
+     return res;   
+    }
+}
+```
+First sort the array. once we found a equal pair, count++,untill it reachs <nums.length/2
+## 22 189	Rotate Array
+```
+class Solution {
+    public void rotate(int[] nums, int k) {
+        int a[] = new int[nums.length];
+        int n = nums.length;
+        for(int i = 0; i < nums.length; i++) {
+            a[(i+k)%n] = nums[i];
+        }
+        for(int i = 0; i < nums.length; i++) {
+            nums[i] = a[i];
+        }
+    }
+}
+```
+e.p. n = 4; k = 1;  
+{1,2,3,4} rotate to {2,3,4,1}. 
+Which means {2,3,4,1} move to right with 1 step.  
+Which is a(i+k)%nums.length = nums[i].  
+Finally, we make nums[i] = a[i].
+
+## 23 217	contains duplicate
+```
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        Arrays.sort(nums);
+        for(int i = 0; i < nums.length -1; i++) {
+            if(nums[i] == nums[i+1]) {
+            return true;
+            }
+        }
+        return false;
+    }
+}
+```
+
+## 24 218 contains duplicate 2
+
+## 25 268 missing numbers
+```
+class Solution {
+    public int missingNumber(int[] nums) {
+        Arrays.sort(nums);
+        for(int i = 0; i < nums.length; i++) {
+            if(nums[i] != i) {
+                return i;
+            }
+        }
+    return nums.length;
+    }
+}
+```
+
+## 26 plus one
+```
+public class Solution {
+    public int[] plusOne(int[] digits) {
+        int n = digits.length;
+     for ( int i = n-1 ; i >= 0 ; i--){
+         if ( digits [i] < 9 ){
+             digits [i]++;
+                 return digits;
+         }
+        digits[i]=0;
+    }
+    int [] newNumber= new int[n+1];
+    newNumber[0]=1;
+    
+    return newNumber;
+    }
+}
+```
+
+## 27  283 move zeros
+```
+class Solution {
+    public void moveZeroes(int[] nums) {
+        if(nums == null || nums.length == 0) {
+            return;
+        }        
+        int cur = 0;
+        for(int i = 0; i < nums.length; i++) {
+            if(nums[i] != 0) {
+                nums[cur] = nums[i];
+                cur++;
+            }
+        }
+        for(int i = cur; i < nums.length; i++) {
+            nums[i] = 0;
+        }
+    }
+}
+```
+
+## 28  448 Find all numbers Disappeared in an Array
+```
+class Solution {
+    public List<Integer> findDisappearedNumbers(int[] nums) {
+        List<Integer> ret = new ArrayList<Integer>();
+        
+        for(int i = 0; i < nums.length; i++) {
+            int val = Math.abs(nums[i]) -1;
+            if(nums[val] > 0) {
+                nums[val] = -nums[val];
+            }
+        }
+        for(int i = 0; i < nums.length; i++) {
+            if(nums[i] > 0) {
+                ret.add(i+1);
+            }
+        }
+        return ret;
+    }  
+}
+
+```
+There are some nums[i] have the same value. so I use val to represent i.   
+Then we turn nums[i] to negtive. 
+
+##  29 485 Max Consecutive Ones
+```
+class Solution {
+    public int findMaxConsecutiveOnes(int[] nums) {
+        int maxinum = 0;
+        int result =0;
+        for (int i = 0 ; i < nums.length ; i++) {
+            if(nums[i] == 1){
+                maxinum += 1;
+                result = Math.max(maxinum, result);
+            }else maxinum = 0;
+        }
+            return result;
+    }
+}
+```
+
+## 30 532 K-diff Pairs in an Array
+
+## 31 53 Maximum Subarray
+```
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int maxNow = nums[0];
+        int maxSofar = nums[0];
+        for(int i = 1; i < nums.length; i++) {
+            maxNow = Math. max(maxNow+nums[i],nums[i]);
+            maxSofar = Math.max(maxSofar,maxNow);
+        }
+       return maxSofar; 
+    }
+}
+```
+
 
 
 

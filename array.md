@@ -10,7 +10,7 @@ java.util.Arrays 类能方便地操作数组，它提供的所有方法都是静
 
 coding languge:Java
 
-1.Merge Sorted Array
+## 1.Merge Sorted Array
 Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array.
 
 solution:   
@@ -33,7 +33,7 @@ Given an array of integers, return indices of the two numbers such that they add
 You may assume that each input would have exactly one solution, and you may not use the same element twice.
   
 
-solution:
+## solution:
 time complexity n^2:
   
     class Solution {
@@ -57,7 +57,7 @@ Most important:
 throw new IllegalArgumentException("No two sum solution");
 Cause there might be no solution.
 
-Solution 2:
+## Solution 2:
 time complexity o(n)
   
     class Solution {
@@ -84,7 +84,7 @@ time complexity o(n)
     //    }
     //}
 
-3. Largest Number At Lease Twice of Others
+## 3. Largest Number At Lease Twice of Others
 In a given integer array nums, there is always exactly one largest element.
 
 Find whether the largest element in the array is at least twice as much as every other number in the array.
@@ -114,7 +114,7 @@ Why maxIndex != i?
 Cause the nums[] may be : [1]
 which means maxIndex is 0 and i = 0. In that case, the function would return -1 if we dont have a != condition.
 
-4 Min Cost Climbing Stairs
+## 4 Min Cost Climbing Stairs
       
     class Solution {  
     public int minCostClimbingStairs(int[] cost) {
@@ -147,7 +147,7 @@ return Math.min(f1,f2) e.p. cost[]={0,0,1,0}. We would get a expectation 1 if we
 solution2:
 return dp2. In this case we coultnt return to Math.min(dp0,dp1) cause dp2 = Math.min(totalCost(i-2)+Cost[i-2], totalCost(i-1)+Cost(i-1).
 
-5.Find Pivot Index
+## 5.Find Pivot Index
 Given an array of integers nums, write a method that returns the "pivot" index of this array.
 We define the pivot index as the index where the sum of the numbers to the left of the index is equal to the sum of the numbers to the right of the index.
 If no such index exists, we should return -1. If there are multiple pivot indexes, you should return the left-most pivot index.
@@ -168,8 +168,8 @@ If no such index exists, we should return -1. If there are multiple pivot indexe
         return -1;
       }
     }
-     
-6.1-bit and 2-bit Characters
+     
+## 6.1-bit and 2-bit Characters
     
     class Solution {
     public boolean isOneBitCharacter(int[] bits) {

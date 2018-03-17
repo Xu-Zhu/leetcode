@@ -92,7 +92,7 @@ class Solution {
 }
 ```
 
-## 3 4 55.Jump Game
+## 4 55.Jump Game
 ```
 class Solution {
     public boolean canJump(int[] nums) {
@@ -107,3 +107,74 @@ class Solution {
 }
 ```
 Base on Greedy alogrithm.
+
+## 5 73 set matrix zeroes
+```
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+        boolean row = false, col = false;
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
+                if(matrix[i][j] == 0) {
+                    matrix[i][0] = 0;
+                    matrix[0][j] = 0;
+                    if(i == 0){
+                       row = true;
+                     }
+                    if(j == 0) {
+                       col = true;
+                }
+                }
+            }
+        }
+        for(int i = 1;i < m; i++){
+            if(matrix[i][0] == 0) {
+                for(int j = 1; j < n; j++) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+        for(int j = 1; j < n; j++) {
+            if(matrix[0][j] == 0) {
+                for(int i = 1; i < m ; i++) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+        if (row){
+            for (int j = 0; j < n; j++)
+                 matrix[0][j] = 0;
+         }
+        if (col){
+            for(int i = 0; i < m; i++)
+                matrix[i][0] = 0;
+        }
+    }
+}
+```
+The point we set two boolean pointer is if we simply set matrix[i][0] and matrix[0][j] = 0 it will initialize entire matrix to zero after we run next two for loops. Because we will have matrix[0][0] = 0 and it is incorrect.
+
+## 6 228 Summary Ranges
+```
+class Solution {
+    public List<String> summaryRanges(int[] nums) {
+        List<String> list = new ArrayList();
+        for(int i = 0; i < nums.length; i++) {
+            int a = nums[i];
+            while( i + 1 < nums.length && nums[i+1] - nums[i] == 1) {
+                i++;
+            }
+            if(a != nums[i]) {
+                list.add(a + "->"+nums[i]);
+            } else {
+                list.add(a+"");
+            }
+        }
+     return list;   
+    }
+}
+```
+The idea is we need to find mutiple arithmetic progressions.  
+we have an a = nums[i] as a start. By using a while loop we will have the end. Also we update the value of i in for loops.

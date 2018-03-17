@@ -692,6 +692,24 @@ class Solution {
 }
 ```
 First sort the array. once we found a equal pair, count++,untill it reachs <nums.length/2
+```
+class Solution {
+    public int majorityElement(int[] nums) {
+        int count = 0, target = nums[0];
+        for(int i = 0; i < nums.length; i++) {
+            if(nums[i] == target) {
+                count++;
+            } else if(count == 0) {
+                target = nums[i];
+            } else {
+                count--;
+            }
+        }
+        return target;
+    }
+}
+```
+better solution after I have finished majorityElment II
 ## 22 189	Rotate Array
 ```
 class Solution {

@@ -178,3 +178,47 @@ class Solution {
 ```
 The idea is we need to find mutiple arithmetic progressions.  
 we have an a = nums[i] as a start. By using a while loop we will have the end. Also we update the value of i in for loops.
+## 7 229 Majority Element II
+```
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+        if(nums == null || nums.length == 0) return new ArrayList<Integer>();
+        List<Integer> result = new ArrayList<Integer>();
+        int number1 = nums[0], number2 = nums[0],count1 = 0, count2 = 0;
+        for(int i = 0; i < nums.length; i++) {
+            if(nums[i] == number1) {
+                count1++;
+            } else if(nums[i] == number2) {
+                count2++;
+            } else if(count1 == 0) {
+                number1 = nums[i];
+                count1 = 1;
+            } else if(count2 == 0) {
+                number2 = nums[i];
+                count2 = 1;
+            } else {
+                count1--;
+                count2--;
+            }
+        }
+        count1 = 0;
+        count2 = 0;
+        for(int i = 0; i < nums.length; i++) {
+            if(nums[i] == number1) {
+                count1++;
+            }
+            if(nums[i] == number2) {
+                count2++;
+            }
+        }
+        if(count1 > nums.length/3) {
+            result.add(number1);
+        }
+        if(count2 > nums.length/3 && number1 != number2) {
+            result.add(number2);
+        }
+        return result;
+    }
+}
+```
+Since we need to find majoirty elements. It could be at most two numbers cause they should show up more than N/3 times. Which we set numbers1 and number2. we also have count1, count2. The idea of first for loop is trying two looking for the target numbers which we will put them into the next for loop. We will have out result array after second for loop done.

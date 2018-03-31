@@ -222,3 +222,79 @@ class Solution {
 }
 ```
 Since we need to find majoirty elements. It could be at most two numbers cause they should show up more than N/3 times. Which we set numbers1 and number2. we also have count1, count2. The idea of first for loop is trying two looking for the target numbers which we will put them into the next for loop. We will have out result array after second for loop done.
+## 8 442. Find All Duplicates in an Array
+class Solution {
+    public List<Integer> findDuplicates(int[] nums) {
+        List<Integer> result = new ArrayList<Integer>();
+        for(int i = 0; i < nums.length; i++) {
+            int val = Math.abs(nums[i]) - 1;
+            if(nums[val] > 0) {
+                nums[val] = - nums[val];
+            } else {
+                result.add(val+1);
+            }
+        }
+        return result;
+    }
+}
+We set val = Math.abs(nums[i]) - 1 which means nums[i] = val + 1. The idea we use math.abs beacuse we will change nums[val] to negative. After we finished changing all nums[val]. we will look for which nums[val] > 0 then we change it to negative. if some nums[val] are alreaday less than 0 we add that exaclty val+1 in to array.
+
+## 9 526. Beautiful Arrangement
+```
+public class Solution {
+   
+    int count = 0;
+    public int countArrangement(int N) {
+        if (N == 0) return 0;
+       
+        helper(N, N, new int[N + 1]);
+        return count;
+    }
+    
+    private void helper(int N, int pos, int[] used) {
+        if (pos == 0) {
+            count++;
+            return;
+        }
+        
+        for (int i = N; i > 0; i--) {
+            if (used[i] == 0 && (i % pos == 0 || pos % i == 0)) {
+                used[i] = 1;
+                helper(N, pos - 1, used);
+                used[i] = 0;
+            }
+        }
+    }
+ ```
+ This solution was based on marks which is used[i]. We used i-- for loop cause larger integer is hard to be divisible. It will improve 
+the performance.
+## best solution:
+```
+class Solution {
+   private int count = 0;
+    private void swap(int[] nums, int i, int j) {
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
+    }
+    private void helper(int[] nums, int start) {
+        if (start == 0) {
+            count++;
+            return;
+        }
+        for (int i = start; i > 0; i--) {
+            swap(nums, start, i);
+            if (nums[start] % start == 0 || start % nums[start] == 0) helper(nums, start-1);
+            swap(nums,i, start);
+        }
+    }
+    public int countArrangement(int N) {
+        if (N == 0) return 0;
+        int[] nums = new int[N+1];
+        for (int i = 0; i <= N; i++) nums[i] = i;
+        helper(nums, N);
+        return count;
+    }
+}
+```
+By using swap nums[i] and nums[start] we can avoid duplicate cases.

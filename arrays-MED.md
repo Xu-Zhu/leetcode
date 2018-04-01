@@ -298,3 +298,25 @@ class Solution {
 }
 ```
 By using swap nums[i] and nums[start] we can avoid duplicate cases.
+## 10. 238. Product of Array Except Self
+```
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        int leng = nums.length;
+        int[] res = new int[leng];
+        res[0] = 1;
+        //i - left 
+        for(int i = 1; i < leng; i++) {
+            res[i] = res[i - 1] * nums[i - 1];
+        }
+        //right
+        int right = 1;
+        for(int i = leng -2; i >= 0; i--) {
+            right *= nums[i+1];
+            res[i] *= right;
+        }
+        return res;
+    }
+}
+```
+There are two parts. left part and right part for i. let's have an example first 2, 3, 4, 5. so 2 left: none 3-left: 2 4-left: 2 3, 4-left:2 3 4. Once we int res[0] = 1; so i -left will be: nums[i-1] * res[i -1]. On the right part. we int right = 1. By using for loop with i-- we do the same way. At last res[i]*= right will be the final answer.

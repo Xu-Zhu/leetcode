@@ -223,6 +223,7 @@ class Solution {
 ```
 Since we need to find majoirty elements. It could be at most two numbers cause they should show up more than N/3 times. Which we set numbers1 and number2. we also have count1, count2. The idea of first for loop is trying two looking for the target numbers which we will put them into the next for loop. We will have out result array after second for loop done.
 ## 8 442. Find All Duplicates in an Array
+```
 class Solution {
     public List<Integer> findDuplicates(int[] nums) {
         List<Integer> result = new ArrayList<Integer>();
@@ -237,6 +238,7 @@ class Solution {
         return result;
     }
 }
+```
 We set val = Math.abs(nums[i]) - 1 which means nums[i] = val + 1. The idea we use math.abs beacuse we will change nums[val] to negative. After we finished changing all nums[val]. we will look for which nums[val] > 0 then we change it to negative. if some nums[val] are alreaday less than 0 we add that exaclty val+1 in to array.
 
 ## 9 526. Beautiful Arrangement
